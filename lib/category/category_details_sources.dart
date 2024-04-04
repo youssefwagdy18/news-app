@@ -1,37 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/api_manager/api_manager.dart';
+import 'package:news_app/categoryDM.dart';
+import 'package:news_app/tab/tab_widget.dart';
 import 'package:news_app/model/source_response.dart';
 import 'package:news_app/my_theme.dart';
 
-class CategoryDetails extends StatefulWidget {
-  static const String routName ='category_list';
-
-  const CategoryDetails({super.key});
+class CategoryDetailsSources extends StatefulWidget {
+  static const String routeName ='category_list';
+  CategoryDM category;
+  CategoryDetailsSources({super.key, required this.category});
 
   @override
-  State<CategoryDetails> createState() => _HomeScreenState();
+  State<CategoryDetailsSources> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<CategoryDetails> {
+class _HomeScreenState extends State<CategoryDetailsSources> {
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Container(
-          color: MyTheme.whiteColor,
-          child: Image.asset('assets/images/pattern.png',
-            fit: BoxFit.fill,
-            width: double.infinity,
-            height: double.infinity,),
-        ),
-        Scaffold(
-            backgroundColor: Colors.transparent,
-            appBar: AppBar(
-              title: Text('News',
-                style: Theme.of(context).textTheme.titleLarge,),
-            ),
-            body: FutureBuilder<SourceResponse?>(
-                future: ApiManager.getSources(),
+    return FutureBuilder<SourceResponse?>(
+                future: ApiManager.getSources(widget.category.categoryId),
                 builder: (context ,snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return const Center(
@@ -46,12 +33,12 @@ class _HomeScreenState extends State<CategoryDetails> {
                         children: [
                           Text(snapshot.data!.message!),
                           ElevatedButton(onPressed: () {
-                            ApiManager.getSources();
+                            ApiManager.getSources(widget.category.categoryId);
                             setState(() {
 
                             });
                           },
-                              child: Text('try again'))
+                              child: const Text('try again'))
                         ],
                       );
                     }
@@ -59,29 +46,20 @@ class _HomeScreenState extends State<CategoryDetails> {
                   else if (snapshot.hasError) {
                     return Column(
                       children: [
-                        Text('Something went wrong'),
+                        const Text('Something went wrong'),
                         ElevatedButton(onPressed: () {
-                          ApiManager.getSources();
+                          ApiManager.getSources(widget.category.categoryId);
                           setState(() {
 
                           });
                         },
-                            child: Text('try again'))
+                            child: const Text('try again'))
                       ],
                     );
                   }
                   var sourcesList = snapshot.data?.sources??[];
-                  return ListView.builder(itemBuilder: (context, index) {
-                    return Text(sourcesList[index].name!);
-
-                  },
-                    itemCount: sourcesList.length,
-                  );
+                  return TabWidget(sourceList:sourcesList);
                 }
-            )
-
-        )
-      ],
     );
   }
 }

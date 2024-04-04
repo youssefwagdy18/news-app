@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:news_app/home_screen.dart';
 import 'package:news_app/my_theme.dart';
 
-import 'category/category_details.dart';
+import 'category/category_details_sources.dart';
 
 
 void main(){
@@ -17,9 +17,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
      debugShowCheckedModeBanner: false,
-      initialRoute: CategoryDetails.routName,
+      initialRoute: HomeScreen.routeName,
       routes: {
-        CategoryDetails.routName :(context)=> const CategoryDetails(),
+        HomeScreen.routeName : (context)=> HomeScreen()
       },
    theme: MyTheme.lightMode,
     );
