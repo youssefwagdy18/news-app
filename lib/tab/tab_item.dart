@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:news_app/my_theme.dart';
+import 'package:news_app/config/my_theme.dart';
 
 import '../model/source_response.dart';
 
