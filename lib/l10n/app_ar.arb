@@ -1,0 +1,16 @@
+{
+"news_app":"الاخبار",
+"settings":"الضبط",
+"categories":"الفئات",
+  "language":"اللغه",
+  "english": "انجليزى",
+  "arabic": "عربي",
+  "pick_your_category_of_interest": "اختر الفئه \nالمفضله لديك",
+  "sports": "الرياضه",
+  "general": "العامه",
+  "health": "الصحه",
+  "business": "الاعمال",
+  "science": "العلوم",
+  "technology": "التكنولوجيا",
+  "entertainment": "الترفيهيه"
+}

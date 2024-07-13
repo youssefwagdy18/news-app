@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/category/category_item.dart';
-import 'package:news_app/categoryDM.dart';
+import 'package:news_app/category/categoryDM.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CategoryFrag extends StatelessWidget {
-  var categories = CategoryDM.getCategories();
-  Function onCategoryClick;
-  CategoryFrag({required this.onCategoryClick});
+  final categories = CategoryDM.getCategories();
+  final Function onCategoryClick;
+  CategoryFrag({super.key, required this.onCategoryClick});
   @override
   Widget build(BuildContext context) {
     return   Column(
@@ -13,12 +14,12 @@ class CategoryFrag extends StatelessWidget {
       children: [
         Container(
           margin: const EdgeInsets.all(25),
-          child: Text('Pick your category \nof interest'
+          child: Text(AppLocalizations.of(context)!.pick_your_category_of_interest
             ,style: Theme.of(context).textTheme.titleMedium!.copyWith(fontSize: 20),
         ),
         ),
         Expanded(
-          child: GridView.builder(gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
+          child: GridView.builder(gridDelegate:  const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
               mainAxisSpacing: 10,
               crossAxisSpacing: 10

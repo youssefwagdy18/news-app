@@ -8,7 +8,7 @@ class ApiManager{
  static Future<SourceResponse?> getSources(String categoryId)async{
    Uri url =Uri.https(ApiConstants.baseUrl ,ApiConstants.apiPath ,
    {
-     'apiKey' : '65f67b0a275e44e1a176019908b3fea2' ,
+     'apiKey' : '9b9d6fd2aa824ef09102c5a8ab22b6e7' ,
      'category' : categoryId
    });
    try {
@@ -17,7 +17,8 @@ class ApiManager{
      var jason = jsonDecode(responseBody);
      return SourceResponse.fromJson(jason);
    }catch(e){
-     throw e;
+     rethrow;
    }
  }
+
 }

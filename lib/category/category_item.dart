@@ -1,5 +1,7 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
-import 'package:news_app/categoryDM.dart';
+import 'package:news_app/category/categoryDM.dart';
 
 class CategoryItem extends StatelessWidget {
 CategoryDM category;
