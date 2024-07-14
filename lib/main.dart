@@ -1,3 +1,4 @@
+import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:news_app/config/app_local_state_management.dart';
 import 'package:news_app/home_screen.dart';
@@ -6,10 +7,14 @@ import 'package:news_app/news/news_details.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import 'bloc.dart';
+
 void main() {
-  runApp(ChangeNotifierProvider<AppLocalStateManagement>(
+  Bloc.observer = MyBlocObserver();
+  runApp(
+      ChangeNotifierProvider<AppLocalStateManagement>(
     create: (context) => AppLocalStateManagement(),
-    child: const MyApp(),
+    child:  const MyApp(),
   ));
 }
 
